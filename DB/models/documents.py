@@ -3,7 +3,7 @@ from typing import Optional
 
 from pydantic import UUID4, Field
 
-from types import DataCategory
+from ..types.types import DataCategory
 
 from .noSqlBaseDocument import NoSQLBaseDocument
 
