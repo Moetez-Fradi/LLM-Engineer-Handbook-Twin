@@ -22,7 +22,7 @@ from .baseCrawler import BaseSeleniumCrawler
 class LinkedInCrawler(BaseSeleniumCrawler):
     model = PostDocument
 
-    def __init__(self, scroll_limit: int = 5, is_deprecated: bool = True) -> None:
+    def __init__(self, scroll_limit: int = 12, is_deprecated: bool = True) -> None:
         super().__init__(scroll_limit)
 
         self._is_deprecated = is_deprecated
