@@ -124,3 +124,4 @@ secrets.yml
 
 # Misc
 node_modules/
+pnpm-lock.yaml
