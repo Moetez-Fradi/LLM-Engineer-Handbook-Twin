@@ -5,10 +5,10 @@ A lightweight ETL + Crawling + DB scaffold to build an LLM-powered "twin" from p
 **Status:** Work in progress. Interfaces and scripts may change.
 
 ## Overview
-- **ETL:** Orchestrates steps to crawl links, fetch profiles/repos, and persist normalized documents.
-- **Crawlers:** Pluggable crawlers (GitHub, LinkedIn, Custom) via a simple base interface and dispatcher.
-- **DB:** MongoDB integration with simple document models for storage and retrieval.
-- **Experiments:** Scratch space for encoders and LinkedIn export tooling.
+- **ETL:** a pipeline composed of steps to crawl links, fetch profiles/repos, and persist normalized documents.
+- **DB:** MongoDB with simple document models for storage and retrieval and Qdrant as a vector DB.
+- **Experiments:** random space for experimenting while learning.
+- **Feature:** the pipeline to extract features from the data warehouse and store them to the feature store
 
 ## Repo Structure
 - `ETL/`: Pipeline runner and steps
@@ -34,30 +34,11 @@ source .venv/Scripts/activate
 pip install -r requirements.txt || echo "(requirements.txt pending)"
 ```
 
-Environment (examples; adjust as needed):
-```bash
-export MONGO_URI="mongodb://localhost:27017/llm_twin"
-# export GITHUB_TOKEN="<optional>"
-# export LINKEDIN_COOKIES="<optional>"
-```
 
 Run ETL (placeholder entrypoint):
 ```bash
-python ETL/run.py
+PYTHONPATH=. python ETL/run.py
 ```
-
-LinkedIn experiment (optional):
-```bash
-cd experiments/LinkedinCrawling
-pnpm install
-node export.js
-```
-
-## Roadmap (Short)
-- Add `requirements.txt` and `.env.example`
-- Finalize ETL steps and crawler configs
-- Document data schemas and examples
-- Add tests and CI hooks
 
 ## Contributing
 Issues and PRs are welcome. Since this is evolving, please keep changes small and focused.
