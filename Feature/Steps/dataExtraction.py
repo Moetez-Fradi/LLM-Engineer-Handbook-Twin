@@ -1,10 +1,9 @@
 from zenml import get_step_context, step
 from typing import Annotated
-from Logging.logger import logger
+from loguru import logger
 from utils.strings import split_user_name
-from DB.models.documents import UserDocument
+from DB.models.documents import UserDocument, Document
 from DB.queries.fetch_all import fetch_all_data
-from utils.getMetadata import _get_metadata
 
 @step
 def query_data_warehouse(author_full_names: list[str],) -> Annotated[list, "raw_documents"]:
@@ -29,3 +28,23 @@ def query_data_warehouse(author_full_names: list[str],) -> Annotated[list, "raw_
     step_context.add_output_metadata(output_name="raw_documents", metadata=_get_metadata(documents))
     
     return documents
+
+def _get_metadata(documents: list[Document]) -> dict:
+    metadata = {
+        "num_documents": len(documents),
+    }
+    for document in documents:
+        collection = document.get_collection_name()
+        if collection not in metadata:
+            metadata[collection] = {}
+        if "authors" not in metadata[collection]:
+            metadata[collection]["authors"] = list()
+
+        metadata[collection]["num_documents"] = metadata[collection].get("num_documents", 0) + 1
+        metadata[collection]["authors"].append(document.author_full_name)
+
+    for value in metadata.values():
+        if isinstance(value, dict) and "authors" in value:
+            value["authors"] = list(set(value["authors"]))
+
+    return metadata

@@ -1,5 +1,8 @@
 from typing import Dict
 from DB.models.documents import RepositoryDocument, PostDocument, ArticleDocument, Document, UserDocument
+from DB.models.noSqlBaseDocument import NoSQLBaseDocument
+from concurrent.futures import ThreadPoolExecutor
+from loguru import logger
 
 def fetch_all_data(user: UserDocument) -> Dict[str, list[Document]]:
     author_id = str(user.id)
