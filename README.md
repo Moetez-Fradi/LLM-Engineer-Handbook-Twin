@@ -1,6 +1,6 @@
 # LLM Engineer Handbook Twin
 
-A lightweight ETL + Crawling + DB scaffold to build an LLM-powered "twin" from personal/professional data sources (e.g., GitHub, LinkedIn). This is an early, concise README; we’ll expand it as more code lands.
+A lightweight ETL + Crawling + DB scaffold to build an LLM-powered "twin" from personal/professional data sources (e.g., GitHub, LinkedIn). This is an early, concise README; I’ll expand it as more code lands.
 
 **Status:** Work in progress. Interfaces and scripts may change.
 
@@ -26,7 +26,7 @@ Prerequisites:
 - MongoDB (local or cloud URI)
 - Node.js 18+ (only for LinkedIn experiment under `experiments/LinkedinCrawling`)
 
-Setup (Python):
+Setup:
 ```bash
 python -m venv .venv
 source .venv/Scripts/activate
@@ -35,11 +35,8 @@ pip install -r requirements.txt || echo "(requirements.txt pending)"
 ```
 
 
-Run ETL (placeholder entrypoint):
+Run ETL:
 ```bash
 PYTHONPATH=. python ETL/run.py
 ```
-
-## Contributing
-Issues and PRs are welcome. Since this is evolving, please keep changes small and focused.
 
